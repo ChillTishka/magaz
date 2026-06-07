@@ -1,16 +1,76 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ToolZone Market</title>
 
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-panel" id="cartPanel">
+
+  <button class="cart-close" id="closeCart">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <div class="cart-layout">
+
+    <div class="cart-left">
+
+      <div class="cart-header">
+        <span>ІНСТРУМЕНТ</span>
+
+      </div>
+
+      <div class="cart-items" id="cartItems">
+
+        <div class="empty-cart">
+          Кошик порожній
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="cart-right">
+
+      <div class="cart-summary">
+
+        <div class="summary-row">
+          <span>Товарів</span>
+          <span id="cartCount">0</span>
+        </div>
+
+        <div class="summary-row total">
+          <span>Всього</span>
+          <span id="cartTotal">0₴</span>
+        </div>
+
+      </div>
+
+      <button class="buy-btn">
+        КУПИТИ
+      </button>
+
+      <button class="clear-btn" id="clearCart">
+        ОЧИСТИТИ КОШИК
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 
   <header class="topbar">
     <div class="logo">
@@ -20,12 +80,12 @@
 
 
 
-<div class="header-right">
-  <button class="cart-btn">
-    <i class="fa-solid fa-cart-shopping"></i>
-    Кошик
-  </button>
-</div>
+    <div class="header-right">
+      <button class="cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Кошик
+      </button>
+    </div>
   </header>
 
   <div class="page-title">
@@ -34,293 +94,297 @@
 
   <main class="layout">
 
-<!-- ЛІВА ПАНЕЛЬ -->
-<aside class="sidebar">
 
-  <!-- ЦІНА -->
-  <div class="filter-block">
+    <aside class="sidebar">
 
-    <div class="filter-title">
-      <span>Ціна</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
 
-    <div class="filter-content">
-      <div class="price-box">
-        <input type="text" placeholder="Від">
-        <input type="text" placeholder="До">
+      <div class="filter-block">
+
+        <div class="filter-title">
+          <span>Ціна</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="filter-content">
+          <div class="price-box">
+            <input type="number" id="priceFrom" placeholder="Від">
+            <input type="number" id="priceTo" placeholder="До">
+          </div>
+        </div>
+
       </div>
-    </div>
 
-  </div>
 
-  <!-- КАТЕГОРІЯ -->
-  <div class="filter-block">
+      <div class="filter-block">
 
-    <div class="filter-title">
-      <span>Категорія</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
+        <div class="filter-title">
+          <span>Категорія</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
 
-    <div class="filter-content">
-      <label><input type="checkbox"> Болгарки</label>
-      <label><input type="checkbox"> Пили</label>
-      <label><input type="checkbox"> Шуруповерти</label>
-      <label><input type="checkbox"> Генератори</label>
-    </div>
+        <div class="filter-content">
+          <label><input type="checkbox" value="болгарки" class="category-filter"> Болгарки</label>
+          <label><input type="checkbox" value="пили" class="category-filter"> Пили</label>
+          <label><input type="checkbox" value="шуруповерти" class="category-filter"> Шуруповерти</label>
+          <label><input type="checkbox" value="генератори" class="category-filter"> Генератори</label>
+        </div>
 
-  </div>
+      </div>
 
-  <!-- БРЕНД -->
-  <div class="filter-block">
+      <!-- БРЕНД -->
+      <div class="filter-block">
 
-    <div class="filter-title">
-      <span>Бренд</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
+        <div class="filter-title">
+          <span>Бренд</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
 
-    <div class="filter-content">
-      <label><input type="checkbox"> Bosch</label>
-      <label><input type="checkbox"> Makita</label>
-      <label><input type="checkbox"> DeWalt</label>
-      <label><input type="checkbox"> Milwaukee</label>
-    </div>
+        <div class="filter-content">
+          <label><input type="checkbox" value="bosch" class="brand-filter"> Bosch</label>
+          <label><input type="checkbox" value="makita" class="brand-filter"> Makita</label>
+          <label><input type="checkbox" value="dewalt" class="brand-filter"> DeWalt</label>
+          <label><input type="checkbox" value="milwaukee" class="brand-filter"> Milwaukee</label>
+        </div>
 
-  </div>
+      </div>
 
-  <!-- ЖИВЛЕННЯ -->
-  <div class="filter-block">
+      <!-- ЖИВЛЕННЯ -->
+      <div class="filter-block">
 
-    <div class="filter-title">
-      <span>Живлення</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
+        <div class="filter-title">
+          <span>Живлення</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
 
-    <div class="filter-content">
-      <label><input type="checkbox"> Акумуляторні</label>
-      <label><input type="checkbox"> Мережеві</label>
-      <label><input type="checkbox"> Бензинові</label>
-    </div>
+        <div class="filter-content">
+          <label><input type="checkbox" value="акумуляторні" class="power-filter"> Акумуляторні</label>
+          <label><input type="checkbox" value="мережеві" class="power-filter"> Мережеві</label>
+          <label><input type="checkbox" value="бензинові" class="power-filter"> Бензинові</label>
+        </div>
 
-  </div>
+      </div>
 
-</aside>
+    </aside>
 
-    <!-- КОНТЕНТ -->
     <section class="content">
 
       <div class="toolbar">
 
-<div class="categories">
-  <button>Болгарки</button>
-  <button>Пили</button>
-  <button>Шуруповерти</button>
-  <button>Генератори</button>
-</div>
+        <div class="categories">
+          <button data-category="болгарки">Болгарки</button>
+          <button data-category="пили">Пили</button>
+          <button data-category="шуруповерти">Шуруповерти</button>
+          <button data-category="генератори">Генератори</button>
+        </div>
 
         <div class="search-sort">
           <div class="search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Пошук інструментів">
+            <input type="text" id="searchInput" placeholder="Пошук інструментів">
           </div>
 
-          <select>
-            <option>За ціною</option>
-            <option>Популярні</option>
-            <option>Нові</option>
+          <select id="sortSelect">
+            <option value="price">За ціною</option>
+            <option value="hot">Популярні</option>
+            <option value="new">Нові</option>
           </select>
         </div>
 
       </div>
 
-      <!-- КАРТКИ -->
       <div class="products-grid">
 
-  <!-- Болгарки -->
-  <div class="card">
-    <div class="badge">TOP</div>
-    <img src="images/болгарка Bosch.png">
-    <h3>Болгарка Bosch GWS 180</h3>
-    <div class="price">
-      <span class="new-price">3450₴</span>
-      <span class="old-price">3990₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <!-- Болгарки -->
+        <div class="card" data-category="болгарки" data-brand="bosch" data-power="мережеві" data-price="3450">
+          <div class="badge">TOP</div>
+          <img src="images/болгарка Bosch.png">
+          <h3>Болгарка Bosch GWS 180</h3>
+          <div class="price">
+            <span class="new-price">3450₴</span>
+            <span class="old-price">3990₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">NEW</div>
-    <img src="images/болгарка Makita.png">
-    <h3>Болгарка Makita GA5030</h3>
-    <div class="price">
-      <span class="new-price">3790₴</span>
-      <span class="old-price">4350₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="болгарки" data-brand="makita" data-power="мережеві" data-price="3790">
+          <div class="badge">NEW</div>
+          <img src="images/болгарка Makita.png">
+          <h3>Болгарка Makita GA5030</h3>
+          <div class="price">
+            <span class="new-price">3790₴</span>
+            <span class="old-price">4350₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">HOT</div>
-    <img src="images/болгарка DeWalt.png">
-    <h3>Болгарка DeWalt DWE4157</h3>
-    <div class="price">
-      <span class="new-price">4250₴</span>
-      <span class="old-price">4890₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="болгарки" data-brand="dewalt" data-power="акумуляторні" data-price="4250">
+          <div class="badge">HOT</div>
+          <img src="images/болгарка DeWalt.png">
+          <h3>Болгарка DeWalt DWE4157</h3>
+          <div class="price">
+            <span class="new-price">4250₴</span>
+            <span class="old-price">4890₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">-12%</div>
-    <img src="images/болгарка Milwaukee.png">
-    <h3>Болгарка Milwaukee AG800</h3>
-    <div class="price">
-      <span class="new-price">4690₴</span>
-      <span class="old-price">5320₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="болгарки" data-brand="milwaukee" data-power="акумуляторні" data-price="4690">
+          <div class="badge">-12%</div>
+          <img src="images/болгарка Milwaukee.png">
+          <h3>Болгарка Milwaukee AG800</h3>
+          <div class="price">
+            <span class="new-price">4690₴</span>
+            <span class="old-price">5320₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <!-- Пили -->
-  <div class="card">
-    <div class="badge">TOP</div>
-    <img src="images/пила Bosch.png">
-    <h3>Пила Bosch EasyCut</h3>
-    <div class="price">
-      <span class="new-price">5650₴</span>
-      <span class="old-price">6200₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <!-- Пили -->
+        <div class="card" data-category="пили" data-brand="bosch" data-power="акумуляторні" data-price="5650">
+          <div class="badge">TOP</div>
+          <img src="images/пила Bosch.png">
+          <h3>Пила Bosch EasyCut</h3>
+          <div class="price">
+            <span class="new-price">5650₴</span>
+            <span class="old-price">6200₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">NEW</div>
-    <img src="images/пила Makita.png">
-    <h3>Пила Makita EA3203S</h3>
-    <div class="price">
-      <span class="new-price">6390₴</span>
-      <span class="old-price">7150₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="пили" data-brand="makita" data-power="бензинові" data-price="6390">
+          <div class="badge">NEW</div>
+          <img src="images/пила Makita.png">
+          <h3>Пила Makita EA3203S</h3>
+          <div class="price">
+            <span class="new-price">6390₴</span>
+            <span class="old-price">7150₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">HOT</div>
-    <img src="images/пила DeWalt.png">
-    <h3>Пила DeWalt DCM565</h3>
-    <div class="price">
-      <span class="new-price">6890₴</span>
-      <span class="old-price">7590₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="пили" data-brand="dewalt" data-power="бензинові" data-price="6890">
+          <div class="badge">HOT</div>
+          <img src="images/пила DeWalt.png">
+          <h3>Пила DeWalt DCM565</h3>
+          <div class="price">
+            <span class="new-price">6890₴</span>
+            <span class="old-price">7590₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">-10%</div>
-    <img src="images/пила Milwaukee.png">
-    <h3>Пила Milwaukee M18</h3>
-    <div class="price">
-      <span class="new-price">7350₴</span>
-      <span class="old-price">8150₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="пили" data-brand="milwaukee" data-power="акумуляторні" data-price="7350">
+          <div class="badge">-10%</div>
+          <img src="images/пила Milwaukee.png">
+          <h3>Пила Milwaukee M18</h3>
+          <div class="price">
+            <span class="new-price">7350₴</span>
+            <span class="old-price">8150₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <!-- Шуруповерты -->
-  <div class="card">
-    <div class="badge">TOP</div>
-    <img src="images/шуруповерт Bosch.png">
-    <h3>Шуруповерт Bosch GSR 120</h3>
-    <div class="price">
-      <span class="new-price">2990₴</span>
-      <span class="old-price">3490₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <!-- Шуруповерты -->
+        <div class="card" data-category="шуруповерти" data-brand="bosch" data-power="акумуляторні" data-price="2990">
+          <div class="badge">TOP</div>
+          <img src="images/шуруповерт Bosch.png">
+          <h3>Шуруповерт Bosch GSR 120</h3>
+          <div class="price">
+            <span class="new-price">2990₴</span>
+            <span class="old-price">3490₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">NEW</div>
-    <img src="images/шуруповерт Makita.png">
-    <h3>Шуруповерт Makita DF333D</h3>
-    <div class="price">
-      <span class="new-price">3390₴</span>
-      <span class="old-price">3850₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="шуруповерти" data-brand="makita" data-power="акумуляторні" data-price="3390">
+          <div class="badge">NEW</div>
+          <img src="images/шуруповерт Makita.png">
+          <h3>Шуруповерт Makita DF333D</h3>
+          <div class="price">
+            <span class="new-price">3390₴</span>
+            <span class="old-price">3850₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">HOT</div>
-    <img src="images/шуруповерт DeWalt.png">
-    <h3>Шуруповерт DeWalt DCD771</h3>
-    <div class="price">
-      <span class="new-price">3890₴</span>
-      <span class="old-price">4390₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="шуруповерти" data-brand="dewalt" data-power="акумуляторні" data-price="3890">
+          <div class="badge">HOT</div>
+          <img src="images/шуруповерт DeWalt.png">
+          <h3>Шуруповерт DeWalt DCD771</h3>
+          <div class="price">
+            <span class="new-price">3890₴</span>
+            <span class="old-price">4390₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">-15%</div>
-    <img src="images/шуруповерт Milwaukee.png">
-    <h3>Шуруповерт Milwaukee M12</h3>
-    <div class="price">
-      <span class="new-price">4590₴</span>
-      <span class="old-price">5390₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="шуруповерти" data-brand="milwaukee" data-power="акумуляторні"
+          data-price="4590">
+          <div class="badge">-15%</div>
+          <img src="images/шуруповерт Milwaukee.png">
+          <h3>Шуруповерт Milwaukee M12</h3>
+          <div class="price">
+            <span class="new-price">4590₴</span>
+            <span class="old-price">5390₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <!-- Генераторы -->
-  <div class="card">
-    <div class="badge">TOP</div>
-    <img src="images/генератор Bosch.png">
-    <h3>Генератор Bosch PowerGen</h3>
-    <div class="price">
-      <span class="new-price">14900₴</span>
-      <span class="old-price">16500₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <!-- Генераторы -->
+        <div class="card" data-category="генератори" data-brand="bosch" data-power="бензинові" data-price="14900">
+          <div class="badge">TOP</div>
+          <img src="images/генератор Bosch.png">
+          <h3>Генератор Bosch PowerGen</h3>
+          <div class="price">
+            <span class="new-price">14900₴</span>
+            <span class="old-price">16500₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">NEW</div>
-    <img src="images/генератор Makita.png">
-    <h3>Генератор Makita EG2850A</h3>
-    <div class="price">
-      <span class="new-price">16900₴</span>
-      <span class="old-price">18500₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="генератори" data-brand="makita" data-power="бензинові" data-price="16900">
+          <div class="badge">NEW</div>
+          <img src="images/генератор Makita.png">
+          <h3>Генератор Makita EG2850A</h3>
+          <div class="price">
+            <span class="new-price">16900₴</span>
+            <span class="old-price">18500₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">HOT</div>
-    <img src="images/генератор DeWalt.png">
-    <h3>Генератор DeWalt DXGNi</h3>
-    <div class="price">
-      <span class="new-price">18900₴</span>
-      <span class="old-price">20900₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="генератори" data-brand="dewalt" data-power="бензинові" data-price="18900">
+          <div class="badge">HOT</div>
+          <img src="images/генератор DeWalt.png">
+          <h3>Генератор DeWalt DXGNi</h3>
+          <div class="price">
+            <span class="new-price">18900₴</span>
+            <span class="old-price">20900₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-  <div class="card">
-    <div class="badge">-18%</div>
-    <img src="images/генератор Milwaukee.png">
-    <h3>Генератор Milwaukee MX FUEL</h3>
-    <div class="price">
-      <span class="new-price">22900₴</span>
-      <span class="old-price">27900₴</span>
-    </div>
-    <button>В КОШИК</button>
-  </div>
+        <div class="card" data-category="генератори" data-brand="milwaukee" data-power="бензинові" data-price="22900">
+          <div class="badge">-18%</div>
+          <img src="images/генератор Milwaukee.png">
+          <h3>Генератор Milwaukee MX FUEL</h3>
+          <div class="price">
+            <span class="new-price">22900₴</span>
+            <span class="old-price">27900₴</span>
+          </div>
+          <button>В КОШИК</button>
+        </div>
 
-</div>
+      </div>
 
     </section>
   </main>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
+  <div id="successMessage" class="success-message">
+  <i class="fa-solid fa-circle-check"></i>
+  Замовлення успішно оформлено!
+</div>
 </body>
+
 </html>
